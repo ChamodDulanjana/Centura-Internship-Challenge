@@ -11,12 +11,28 @@ const CreateUser = () => {
         e.preventDefault();
 
         let userData = {
-            uId : uId,
+            uId : Date.now(),
             name: name,
             email: email,
             phone: phone,
         }
+
+        const response = await axios.post(
+            `https://{WEAVY-SERVER}/api/users`,
+            JSON.stringify(userData),
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer wys_3tx428BNbWM7q3YVFVKDiFhYrkdWnj0VefDy`, // Replace with your auth token
+                },
+            }
+        );
+        console.log(response);
+
+        console.log(userData);
+
     }
+
 
 
 
@@ -27,13 +43,13 @@ const CreateUser = () => {
                 onSubmit={(e) => e.preventDefault()}
 
             >
-                <input type="text" placeholder="UserId" value={uId} onChange={(e) => setUId(e.target.value)} />
+                <input type="text" placeholder="UserId" value={uId} onChange={(e) => setUId(e.target.value)}
                        className="border border-gray-200 rounded-md w-full px-2 py-1 mb-5"/>
-                <input type="text" placeholder="Username" value={name} onChange={(e) => setName(e.target.value)} />
+                <input type="text" placeholder="Username" value={name} onChange={(e) => setName(e.target.value)}
                        className="border border-gray-200 rounded-md w-full px-2 py-1 mb-5"/>
-                <input type="email" placeholder="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                <input type="email" placeholder="email" value={email} onChange={(e) => setEmail(e.target.value)}
                        className="border border-gray-200 rounded-md w-full px-2 py-1 mb-5"/>
-                <input type="text" placeholder="phone" value={phone} onChange={(e) => setPhone(e.target.value)} />
+                <input type="text" placeholder="phone" value={phone} onChange={(e) => setPhone(e.target.value)}
                        className="border border-gray-200 rounded-md w-full px-2 py-1 mb-5"/>
                 <button type="submit"
                         className="border border-gray-200 rounded-md w-full px-2 py-1 mb-5 bg-green-400"
